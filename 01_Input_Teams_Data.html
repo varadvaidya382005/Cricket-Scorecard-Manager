@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        body {
+            font-family: cursive;
+            background-color: #182628;
+        }
+
+        input {
+            font-family: cursive;
+
+        }
+
+        #parent {
+            /* background: #65ccb8; */
+            background-color: #748d92;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-shrink: initial;
+        }
+
+        #heading {
+            font-family: cursive;
+            font-weight: bold;
+        }
+
+        #team_names {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20%;
+            margin-right: 20%;
+
+        }
+
+        .team_name_label {
+            font-family: cursive;
+            font-size: large;
+            font-weight: lighter;
+            align-items: center;
+            position: relative;
+            top: -0.6em;
+        }
+
+        .team_names_inner {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            height: max-content;
+
+        }
+
+        #team_names_inner {
+
+            position: relative;
+            top: 1em;
+        }
+
+        #button_div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 5px;
+        }
+
+        #match_description1 {
+            margin-left: 10%;
+            margin-right: 5%;
+            padding: 0px;
+            text-align: justify;
+            justify-content: space-between;
+        }
+
+        .input_team {
+            width: 240px;
+            height: 30px;
+            border-top-right-radius: 50%;
+        }
+
+        #set_name_button {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 10px;
+            height: max-content;
+            width: max-content;
+            margin: auto;
+            background-color: #57ba98;
+            /* background-color: #3b945e; */
+
+            text-align: center;
+            /* padding-right: 10px; */
+            font-family: cursive;
+        }
+
+        #team_form {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+
+
+        }
+
+        #Team_name_1,
+        #Team_name_2 {
+            font-family: cursive;
+            font-size: large;
+            font-weight: lighter;
+            align-items: center;
+        }
+
+        #hide_form {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="team_names">
+            <center>
+                <h3 id="heading">Enter Team Names</h3>
+            </center>
+            <div class="team_names_inner" id="team_names_inner">
+                <p class="team_name_label">Team Name 1 :</p>
+                <p class="team_name_label">Team Name 2 :</p>
+            </div>
+            <div class="team_names_inner">
+                <input class="input_team" type="text" id="Team_name__input_1">
+                <input class="input_team" type="text" id="Team_name__input_2">
+            </div>
+            <div id="button_div">
+                <button id="set_name_button" onclick="return set_team_name_1()">Set Team name</button>
+            </div>
+
+            <div id="match_description1">
+                <p name="" id="some_match_description" style="display: none;"></p>
+            </div>
+        </div>
+        <form  id="hide_form">
+            <div id="team_form">
+
+                <div>
+                    <!-- Require tag Deneka Baaki hai -->
+                    <center><label id="Team_name_1">Enter players of Team 1</label></center><br>
+                    <input type="text" name="Team_1_player1" id="Team_1_player1" placeholder="Player 1"><br>
+                    <input type="text" name="Team_1_player2" id="Team_1_player2" placeholder="Player 2"><br>
+                    <input type="text" name="Team_1_player3" id="Team_1_player3" placeholder="Player 3"><br>
+                    <input type="text" name="Team_1_player4" id="Team_1_player4" placeholder="Player 4"><br>
+                    <input type="text" name="Team_1_player5" id="Team_1_player5" placeholder="Player 5"><br>
+                    <input type="text" name="Team_1_player6" id="Team_1_player6" placeholder="Player 6"><br>
+                    <input type="text" name="Team_1_player7" id="Team_1_player7" placeholder="Player 7"><br>
+                    <input type="text" name="Team_1_player8" id="Team_1_player8" placeholder="Player 8"><br>
+                    <input type="text" name="Team_1_player9" id="Team_1_player9" placeholder="Player 9"><br>
+                    <input type="text" name="Team_1_player10" id="Team_1_player10" placeholder="Player 10"><br>
+                    <input type="text" name="Team_1_player11" id="Team_1_player11" placeholder="Player 11"><br>
+                </div>
+
+                <div>
+                    <center><label id="Team_name_2">Enter players of Team 2</label></center><br>
+                    <input type="text" name="Team_2_player1" id="Team_2_player1" placeholder="Player 1"><br>
+                    <input type="text" name="Team_2_player2" id="Team_2_player2" placeholder="Player 2"><br>
+                    <input type="text" name="Team_2_player3" id="Team_2_player3" placeholder="Player 3"><br>
+                    <input type="text" name="Team_2_player4" id="Team_2_player4" placeholder="Player 4"><br>
+                    <input type="text" name="Team_2_player5" id="Team_2_player5" placeholder="Player 5"><br>
+                    <input type="text" name="Team_2_player6" id="Team_2_player6" placeholder="Player 6"><br>
+                    <input type="text" name="Team_2_player7" id="Team_2_player7" placeholder="Player 7"><br>
+                    <input type="text" name="Team_2_player8" id="Team_2_player8" placeholder="Player 8"><br>
+                    <input type="text" name="Team_2_player9" id="Team_2_player9" placeholder="Player 9"><br>
+                    <input type="text" name="Team_2_player10" id="Team_2_player10" placeholder="Player 10"><br>
+                    <input type="text" name="Team_2_player11" id="Team_2_player11" placeholder="Player 11"><br>
+                </div>
+            </div>
+
+            <center><input type="button" value="Set teams" onclick="return setDetails()"></center>
+            <center><input type="submit" value="Start the Match" id="start_match_button" hidden></center>
+        </form>
+
+
+
+
+
+
+
+        <script>
+            var i = -1
+            let array_of_players_team_2
+            let array_of_players_team_1
+            let team2_players
+            let team1_players
+            function set_team_name_1() {
+                let team_name_1 = document.getElementById("Team_name__input_1");
+                let team_name_2 = document.getElementById("Team_name__input_2");
+                let label_name_1 = document.getElementById("Team_name_1");
+                let label_name_2 = document.getElementById("Team_name_2");
+                let match_description = document.getElementById("some_match_description");
+                // let team_1 = document.getElementById("set_team_name_1");
+                // let team_2 = document.getElementById("set_team_name_2");
+
+
+                if (team_name_1.value == "" || team_name_2.value == "") {
+                    alert("Fill Team Names")
+                } else {
+                    if (team_name_1.value == team_name_2.value) {
+                        alert("Both Team Names cant be same")
+                    } else {
+                        match_description.style.display = "block"
+                        match_description.innerHTML = "Welcome to the exciting match we are about to witness. In this upcoming game, two formidable teams <b>" + team_name_1.value + "</b> will be facing off against <b>" + team_name_2.value + "</b> , each with their own unique strengths and strategies. As we anticipate the thrilling competition ahead, it's important to recognize the dedication and effort these teams have put into preparing for this moment. Before the game commences, we kindly ask that you assist us by submitting the names of the team members. Your participation helps ensure a smooth and organized event for everyone involved. Thank you for your cooperation, and let's enjoy the excitement of the game together!"
+
+
+
+
+                        label_name_1.innerHTML = "<b>" + team_name_1.value + "</b>"
+                        label_name_2.innerHTML = "<b>" + team_name_2.value + "</b>"
+                        // team_1.innerHTML= team_name_1.value
+                        // team_2.innerHTML= team_name_2.value
+
+                        document.getElementById("hide_form").style.display = "block"
+                    }
+                }
+                return false
+            }
+
+
+
+
+            function setDetails() {
+            
+
+                let team1_player1 = document.getElementById('Team_1_player1');
+                let team1_player2 = document.getElementById('Team_1_player2');
+                let team1_player3 = document.getElementById('Team_1_player3');
+                let team1_player4 = document.getElementById('Team_1_player4');
+                let team1_player5 = document.getElementById('Team_1_player5');
+                let team1_player6 = document.getElementById('Team_1_player6');
+                let team1_player7 = document.getElementById('Team_1_player7');
+                let team1_player8 = document.getElementById('Team_1_player8');
+                let team1_player9 = document.getElementById('Team_1_player9');
+                let team1_player10 = document.getElementById('Team_1_player10');
+                let team1_player11 = document.getElementById('Team_1_player11');
+                let label_name_1 = document.getElementById("Team_name__input_1");
+
+                team1_players = label_name_1.value + "|" + team1_player1.value + "|" + team1_player2.value + "|" + team1_player3.value + "|" + team1_player4.value + "|" + team1_player5.value + "|" + team1_player6.value + "|" + team1_player7.value + "|" + team1_player8.value + "|" + team1_player9.value + "|" + team1_player10.value + "|" + team1_player11.value+"|"
+
+                array_of_players_team_1 = team1_players.split("|")
+                array_of_players_team_1.forEach(element => {
+                    console.log(element)
+                    i++
+                });
+
+
+
+
+                let team2_player1 = document.getElementById('Team_2_player1');
+                let team2_player2 = document.getElementById('Team_2_player2');
+                let team2_player3 = document.getElementById('Team_2_player3');
+                let team2_player4 = document.getElementById('Team_2_player4');
+                let team2_player5 = document.getElementById('Team_2_player5');
+                let team2_player6 = document.getElementById('Team_2_player6');
+                let team2_player7 = document.getElementById('Team_2_player7');
+                let team2_player8 = document.getElementById('Team_2_player8');
+                let team2_player9 = document.getElementById('Team_2_player9');
+                let team2_player10 = document.getElementById('Team_2_player10');
+                let team2_player11 = document.getElementById('Team_2_player11');
+                let label_name_2 = document.getElementById("Team_name__input_2");
+
+                team2_players = label_name_2.value + "|" + team2_player1.value + "|" + team2_player2.value + "|" + team2_player3.value + "|" + team2_player4.value + "|" + team2_player5.value + "|" + team2_player6.value + "|" + team2_player7.value + "|" + team2_player8.value + "|" + team2_player9.value + "|" + team2_player10.value + "|" + team2_player11.value
+
+                array_of_players_team_2 = team2_players.split("|")
+                array_of_players_team_2.forEach(element => {
+                    console.log(element)
+                    i++
+                });
+
+                
+
+                // document.getElementById("start_match_button").hidden=false
+                window.location.href = "02_Toss_Details.html?team="+ team1_players +team2_players
+                return false
+            }
+        </script>
+    </div>
+</body>
+
+</html>

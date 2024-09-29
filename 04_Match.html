@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATCH</title>
+
+
+    <style>
+        marquee {
+            background-color: rgb(9, 10, 10);
+            color: rgb(235, 240, 143);
+            font-size: large;
+            font-weight: bolder;
+            height: 30px;
+            font-family: fantasy;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+        }
+
+        body {
+            background-color: darkslategray;
+            font-family: fantasy;
+            position: relative;
+            overflow: auto;
+        }
+
+        .parent {
+            background-color: antiquewhite;
+            margin: 5%;
+            padding: 5%;
+            border: 6px solid black;
+
+        }
+
+
+        .batters_class,
+        .bowlers_class {
+            background-color: darkslategray;
+            font-family: fantasy;
+            font-size: larger;
+            font-weight: bold;
+            color: antiquewhite;
+            border-top-left-radius: 10%;
+            border-top-right-radius: 10%;
+
+        }
+
+        .action_button {
+            width: 80px;
+            height: 50px;
+            margin: 10px;
+            font-family: fantasy;
+            font-size: medium;
+            border-radius: 30%;
+        }
+
+        #batting_first {
+            position: absolute;
+            color: aliceblue;
+            top: 0;
+            left: 20%;
+            margin: 0;
+            padding: 10px;
+            font-size: 6dvb;
+            /* background-color: yellow; */
+            /* Background color for visibility */
+            z-index: 1;/
+        }
+
+        #match_between {
+            font-weight: bolder;
+            font-style: italic;
+            font-style: oblique;
+            font-family: Arial, Helvetica, sans-serif;
+            color: darkgray;
+        }
+
+        #batter_1 {
+            font-family: fantasy;
+            font-size: large;
+            background-color: antiquewhite;
+            font-weight: lighter;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 8%;
+        }
+
+        #batter_2 {
+            font-family: fantasy;
+            font-size: large;
+            background-color: antiquewhite;
+            font-weight: lighter;
+            position: absolute;
+            top: 0;
+            left: 8%;
+            margin-top: 10%;
+        }
+
+        .label_bowler {
+            font-family: fantasy;
+            font-size: large;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 8%;
+        }
+
+        #parent_batter_bowler_div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+
+        }
+
+        .batters_class,
+        .bowlers_class {
+            width: 250px;
+            padding: 1px;
+            margin: 1px;
+        }
+
+        .select_label {
+            /* background-color: ; */
+            color: black;
+            font-weight: bold;
+        }
+
+        #play_the_ball {
+            width: 200px;
+            height: 40px;
+            font-family: fantasy;
+            font-size: larger;
+            margin-left: 40%;
+            font-weight: bolder;
+            background-color: burlywood;
+        }
+
+        #scorecard_div,
+        #scorecard_div_2 {
+            margin: 5%;
+            padding: 5%;
+            background-color: bisque;
+            border: 6px solid black;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        #scorecard_bat_bowl_div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-grow: initial;
+            background-color: darkslategray;
+        }
+
+        #scorecard_bowling_div,
+        #scorecard_batting_div {
+            width: 90%;
+            padding: 1%;
+
+        }
+
+        th,
+        td {
+            align-items: center;
+            width: 400px;
+            height: 30px;
+            font-size: larger;
+            background-color: beige;
+        }
+
+
+        .brief_scoreboard {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            margin-right: 1%;
+            background-color: darkslategray;
+            width: 100%;
+            padding: 1%;
+            position: sticky;
+            top: 0;
+            /* Stick to the top of the container */
+            /* background-color: #fff; Background color to ensure visibility */
+            z-index: 1;
+            /* Ensure it sits above other content */
+
+        }
+
+        /* #label_of_scoreboard {
+            display: flex;
+            justify-content: center;
+            font-size: 10vb;
+            font-weight: bold; */
+        /* } */
+
+        ._label_ {
+            color: aliceblue;
+        }
+
+        #run_1,
+        #run_2,
+        #run_3,
+        #run_4,
+        #run_5,
+        #run_6 {
+            background-color: rosybrown;
+        }
+
+        #wicket {
+            background-color: brown;
+        }
+
+        #buttons_div {
+            margin: 3%;
+            padding: 3%;
+            background-color: bisque;
+            border: 6px solid black;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 400px;
+            align-items: center;
+            flex-direction: column;
+            /* width: 100%;  */
+
+        }
+
+        /* #handle_buttons_div {
+
+            width: 60%;
+            background-color: antiquewhite;
+            /* margin: 3%; */
+        /* padding: 3%;
+            border: 6px solid black;
+            display: flex;
+            align-items: center; */
+
+        /* } */
+
+        #buttons_div_2 {
+            width: 89%;
+            background-color: antiquewhite;
+            margin: 0%;
+            padding: 5%;
+            border: 6px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            justify-items: center;
+            flex-wrap: wrap;
+            padding-top: 0%;
+        }
+
+        #scorecard_child_div {
+            /* max-height: 200px; Example height, adjust as needed */
+            overflow: auto;
+            position: relative;
+            /* Enable vertical scrolling */
+
+        }
+
+        #scorecard_overview_div {
+            position: relative;
+            overflow: auto;
+            height: 100%;
+        }
+    </style>
+
+
+
+</head>
+
+<body id="main_body">
+
+    <label id="match_between"></label>
+    <div class="parent">
+        <h3 id="batting_first"></h3>
+        <!-- <label for="" class="label_batting">Batting:</label> -->
+        <label for="" class="label_batting" id="batter_1">Batters</label><br>
+        <label for="" class="label_batting" id="batter_2"></label>
+        <h3 style="color: red;" id="start_warning"> Select 2 Batsman and 1 Bowler by Double Clicking on them </h3>
+
+        <!-- <label for="" class="label_bowler">Bowling</label> -->
+        <label for="" class="label_bowler" id="current_bowler1">Bowling</label>
+        
+        <br>
+
+        <div id="parent_batter_bowler_div">
+            <div id="batter_div">
+                <p for="" class="select_label">Select two Batsman</p>
+                <button class="batters_class" id="batsman_1_Team_1" ondblclick="return set_batsman('1')"></button>
+                <button class="batters_class" id="batsman_1_Team_2" ondblclick="return set_batsman('2')"></button>
+                <button class="batters_class" id="batsman_1_Team_3" ondblclick="return set_batsman('3')"></button>
+                <button class="batters_class" id="batsman_1_Team_4" ondblclick="return set_batsman('4')"></button>
+                <button class="batters_class" id="batsman_1_Team_5" ondblclick="return set_batsman('5')"></button>
+                <button class="batters_class" id="batsman_1_Team_6" ondblclick="return set_batsman('6')"></button>
+                <button class="batters_class" id="batsman_1_Team_7" ondblclick="return set_batsman('7')"></button>
+                <button class="batters_class" id="batsman_1_Team_8" ondblclick="return set_batsman('8')"></button>
+                <button class="batters_class" id="batsman_1_Team_9" ondblclick="return set_batsman('9')"></button>
+                <button class="batters_class" id="batsman_1_Team_10" ondblclick="return set_batsman('10')"></button>
+                <button class="batters_class" id="batsman_1_Team_11" ondblclick="return set_batsman('11')"></button>
+            </div>
+
+            <br>
+
+            <div id="bowler_div">
+                <p for="" class="select_label">Select The Bowler</p>
+                <button id="bowler_1_Team_1" class="bowlers_class" ondblclick="return set_bowler('1',this)"></button>
+                <button id="bowler_1_Team_2" class="bowlers_class" ondblclick="return set_bowler('2',this)"></button>
+                <button id="bowler_1_Team_3" class="bowlers_class" ondblclick="return set_bowler('3',this)"></button>
+                <button id="bowler_1_Team_4" class="bowlers_class" ondblclick="return set_bowler('4',this)"></button>
+                <button id="bowler_1_Team_5" class="bowlers_class" ondblclick="return set_bowler('5',this)"></button>
+                <button id="bowler_1_Team_6" class="bowlers_class" ondblclick="return set_bowler('6',this)"></button>
+                <button id="bowler_1_Team_7" class="bowlers_class" ondblclick="return set_bowler('7',this)"></button>
+                <button id="bowler_1_Team_8" class="bowlers_class" ondblclick="return set_bowler('8',this)"></button>
+                <button id="bowler_1_Team_9" class="bowlers_class" ondblclick="return set_bowler('9',this)"></button>
+                <button id="bowler_1_Team_10" class="bowlers_class" ondblclick="return set_bowler('10',this)"></button>
+                <button id="bowler_1_Team_11" class="bowlers_class" ondblclick="return set_bowler('11',this)"></button>
+
+            </div>
+        </div>
+        <br><br>
+
+        <label for="" id="current_bowler" hidden>Current BOWLER</label>
+
+        <button type="button" id="play_the_ball" onclick="return disabled_all()" disabled>Play The Ball</button>
+
+
+    </div>
+
+
+
+
+
+
+    <div id="scorecard_div" hidden>
+        <h2 for="" id="label_of_scoreboard_2">Scorecard First Inning</h2>
+        <div id="scorecard_child_div">
+            <!-- <div id="scorecard_overview_div"> -->
+
+            <table class="brief_scoreboard" id="brief_scoreboard" border="1" hidden>
+                <tr>
+                    <th id="team_name">Team</th>
+                    <th id="runs">Runs</th>
+                    <td id="present_runs">0</td>
+                    <th id="overs">Overs</th>
+                    <td id="present_overs">0.0</td>
+                    <th id="wickets">Wickets</th>
+                    <td id="present_wicket">0</td>
+                    <th id="extras">Extras</th>
+                    <td id="present_extras">0</td>
+                </tr>
+
+            </table>
+            <!-- </div> -->
+            <div id="scorecard_bat_bowl_div">
+                <div id="scorecard_batting_div">
+                    <center><label class="_label_">Batting</label></center>
+                    <table hidden id="scoreboard" border="1">
+                        <tr>
+                            <th>SRNO</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td id="bat_1">1</td>
+                            <td data-unique-id="1" id="_batter_1"></td>
+                            <td id="score_batter_1"></td>
+                            <td id="total__batter_1"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_2">2</td>
+                            <td data-unique-id="2" id="_batter_2"></td>
+                            <td id="score_batter_2"></td>
+                            <td id="total__batter_2"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_3">3</td>
+                            <td data-unique-id="3" id="_batter_3"></td>
+                            <td id="score_batter_3"></td>
+                            <td id="total__batter_3"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_4">4</td>
+                            <td data-unique-id="4" id="_batter_4"></td>
+                            <td id="score_batter_4"></td>
+                            <td id="total__batter_4"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_5">5</td>
+                            <td data-unique-id="5" id="_batter_5"></td>
+                            <td id="score_batter_5"></td>
+                            <td id="total__batter_5"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_6">6</td>
+                            <td data-unique-id="6" id="_batter_6"></td>
+                            <td id="score_batter_6"></td>
+                            <td id="total__batter_6"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_7">7</td>
+                            <td data-unique-id="7" id="_batter_7"></td>
+                            <td id="score_batter_7"></td>
+                            <td id="total__batter_7"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_8">8</td>
+                            <td data-unique-id="8" id="_batter_8"></td>
+                            <td id="score_batter_8"></td>
+                            <td id="total__batter_8"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_9">9</td>
+                            <td data-unique-id="9" id="_batter_9"></td>
+                            <td id="score_batter_9"></td>
+                            <td id="total__batter_9"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_10">10</td>
+                            <td data-unique-id="10" id="_batter_10"></td>
+                            <td id="score_batter_10"></td>
+                            <td id="total__batter_10"></td>
+                        </tr>
+                        <tr>
+                            <td id="bat_11">11</td>
+                            <td data-unique-id="11" id="_batter_11"></td>
+                            <td id="score_batter_11"></td>
+                            <td id="total__batter_11"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="scorecard_bowling_div">
+                    <center><label class="_label_">Bowling</label></center>
+                    <table hidden id="scoreboard_bowling" border="1">
+                        <tr>
+                            <th>SRNO</th>
+                            <th>Name</th>
+                            <th>Balls</th>
+                            <th>Runs</th>
+                            <th>Wickets</th>
+                            <th>Economy</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td data-unique-id="21" id="_bowler_1"></td>
+                            <td id="overs_bowler_1"></td>
+                            <td id="runs_bowler_1"></td>
+                            <td id="wickets_bowler_1"></td>
+                            <td id="economy_bowler_1"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td data-unique-id="22" id="_bowler_2"></td>
+                            <td id="overs_bowler_2"></td>
+                            <td id="runs_bowler_2"></td>
+                            <td id="wickets_bowler_2"></td>
+                            <td id="economy_bowler_2"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td data-unique-id="23" id="_bowler_3"></td>
+                            <td id="overs_bowler_3"></td>
+                            <td id="runs_bowler_3"></td>
+                            <td id="wickets_bowler_3"></td>
+                            <td id="economy_bowler_3"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td data-unique-id="24" id="_bowler_4"></td>
+                            <td id="overs_bowler_4"></td>
+                            <td id="runs_bowler_4"></td>
+                            <td id="wickets_bowler_4"></td>
+                            <td id="economy_bowler_4"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td data-unique-id="25" id="_bowler_5"></td>
+                            <td id="overs_bowler_5"></td>
+                            <td id="runs_bowler_5"></td>
+                            <td id="wickets_bowler_5"></td>
+                            <td id="economy_bowler_5"></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td data-unique-id="26" id="_bowler_6"></td>
+                            <td id="overs_bowler_6"></td>
+                            <td id="runs_bowler_6"></td>
+                            <td id="wickets_bowler_6"></td>
+                            <td id="economy_bowler_6"></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td data-unique-id="27" id="_bowler_7"></td>
+                            <td id="overs_bowler_7"></td>
+                            <td id="runs_bowler_7"></td>
+                            <td id="wickets_bowler_7"></td>
+                            <td id="economy_bowler_7"></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td data-unique-id="28" id="_bowler_8"></td>
+                            <td id="overs_bowler_8"></td>
+                            <td id="runs_bowler_8"></td>
+                            <td id="wickets_bowler_8"></td>
+                            <td id="economy_bowler_8"></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td data-unique-id="29" id="_bowler_9"></td>
+                            <td id="overs_bowler_9"></td>
+                            <td id="runs_bowler_9"></td>
+                            <td id="wickets_bowler_9"></td>
+                            <td id="economy_bowler_9"></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td data-unique-id="30" id="_bowler_10"></td>
+                            <td id="overs_bowler_10"></td>
+                            <td id="runs_bowler_10"></td>
+                            <td id="wickets_bowler_10"></td>
+                            <td id="economy_bowler_10"></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td data-unique-id="31" id="_bowler_11"></td>
+                            <td id="overs_bowler_11"></td>
+                            <td id="runs_bowler_11"></td>
+                            <td id="wickets_bowler_11"></td>
+                            <td id="economy_bowler_11"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr class="hr_tag"><hr class="hr_tag">
+        <!-- <div id="scorecard_div_2"> -->
+        <h2 for="" id="label_of_scoreboard" hidden>Scorecard Second Inning</h2>
+        <div id="scorecard_child_div_2" hidden>
+            <div id="scorecard_overview_div_2" hidden>
+
+                <table class="brief_scoreboard" id="brief_scoreboard_2" border="1" hidden
+                    style="position: sticky; top: 0;">
+                    <tr>
+                        <th id="team_name_2">Name</th>
+                        <th id="new_runs">Runs</th>
+                        <td id="new_present_runs">0</td>
+                        <th id="new_overs">Overs</th>
+                        <td id="new_present_overs">0.0</td>
+                        <th id="new_wickets">Wickets</th>
+                        <td id="new_present_wicket">0</td>
+                        <th id="new_extras">Extras</th>
+                        <td id="new_present_extras">0</td>
+                    </tr>
+
+                </table>
+            </div>
+            <h2 hidden id="required_details"></h2>
+            <div id="scorecard_bat_bowl_div">
+                <div id="scorecard_batting_div">
+                    <center><label class="_label_">Batting</label></center>
+                    <table id="scoreboard_2" border="1">
+                        <tr>
+                            <th>SRNO</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_1">1</td>
+                            <td data-unique-id="101" id="new_inning__batter_1"></td>
+                            <td id="new_score_batter_1"></td>
+                            <td id="new_total__batter_1"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_2">2</td>
+                            <td data-unique-id="102" id="new_inning__batter_2"></td>
+                            <td id="new_score_batter_2"></td>
+                            <td id="new_total__batter_2"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_3">3</td>
+                            <td data-unique-id="103" id="new_inning__batter_3"></td>
+                            <td id="new_score_batter_3"></td>
+                            <td id="new_total__batter_3"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_4">4</td>
+                            <td data-unique-id="104" id="new_inning__batter_4"></td>
+                            <td id="new_score_batter_4"></td>
+                            <td id="new_total__batter_4"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_5">5</td>
+                            <td data-unique-id="105" id="new_inning__batter_5"></td>
+                            <td id="new_score_batter_5"></td>
+                            <td id="new_total__batter_5"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_6">6</td>
+                            <td data-unique-id="106" id="new_inning__batter_6"></td>
+                            <td id="new_score_batter_6"></td>
+                            <td id="new_total__batter_6"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_7">7</td>
+                            <td data-unique-id="107" id="new_inning__batter_7"></td>
+                            <td id="new_score_batter_7"></td>
+                            <td id="new_total__batter_7"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_8">8</td>
+                            <td data-unique-id="108" id="new_inning__batter_8"></td>
+                            <td id="new_score_batter_8"></td>
+                            <td id="new_total__batter_8"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_9">9</td>
+                            <td data-unique-id="109" id="new_inning__batter_9"></td>
+                            <td id="new_score_batter_9"></td>
+                            <td id="new_total__batter_9"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_10">10</td>
+                            <td data-unique-id="110" id="new_inning__batter_10"></td>
+                            <td id="new_score_batter_10"></td>
+                            <td id="new_total__batter_10"></td>
+                        </tr>
+                        <tr>
+                            <td id="new_bat_11">11</td>
+                            <td data-unique-id="111" id="new_inning__batter_11"></td>
+                            <td id="new_score_batter_11"></td>
+                            <td id="new_total__batter_11"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="scorecard_bowling_div">
+                    <center><label class="_label_">Bowling</label></center>
+                    <table hidden id="scoreboard_bowling_2" border="1">
+                        <tr>
+                            <th>SRNO</th>
+                            <th>Name</th>
+                            <th>Balls</th>
+                            <th>Runs</th>
+                            <th>Wickets</th>
+                            <th>Economy</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td data-unique-id="121" id="new_inning__bowler_1"></td>
+                            <td id="new_inning_overs_bowler_1"></td>
+                            <td id="new_inning_runs_bowler_1"></td>
+                            <td id="new_inning_wickets_bowler_1"></td>
+                            <td id="new_inning_economy_bowler_1"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td data-unique-id="122" id="new_inning__bowler_2"></td>
+                            <td id="new_inning_overs_bowler_2"></td>
+                            <td id="new_inning_runs_bowler_2"></td>
+                            <td id="new_inning_wickets_bowler_2"></td>
+                            <td id="new_inning_economy_bowler_2"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td data-unique-id="123" id="new_inning__bowler_3"></td>
+                            <td id="new_inning_overs_bowler_3"></td>
+                            <td id="new_inning_runs_bowler_3"></td>
+                            <td id="new_inning_wickets_bowler_3"></td>
+                            <td id="new_inning_economy_bowler_3"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td data-unique-id="124" id="new_inning__bowler_4"></td>
+                            <td id="new_inning_overs_bowler_4"></td>
+                            <td id="new_inning_runs_bowler_4"></td>
+                            <td id="new_inning_wickets_bowler_4"></td>
+                            <td id="new_inning_economy_bowler_4"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td data-unique-id="125" id="new_inning__bowler_5"></td>
+                            <td id="new_inning_overs_bowler_5"></td>
+                            <td id="new_inning_runs_bowler_5"></td>
+                            <td id="new_inning_wickets_bowler_5"></td>
+                            <td id="new_inning_economy_bowler_5"></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td data-unique-id="126" id="new_inning__bowler_6"></td>
+                            <td id="new_inning_overs_bowler_6"></td>
+                            <td id="new_inning_runs_bowler_6"></td>
+                            <td id="new_inning_wickets_bowler_6"></td>
+                            <td id="new_inning_economy_bowler_6"></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td data-unique-id="127" id="new_inning__bowler_7"></td>
+                            <td id="new_inning_overs_bowler_7"></td>
+                            <td id="new_inning_runs_bowler_7"></td>
+                            <td id="new_inning_wickets_bowler_7"></td>
+                            <td id="new_inning_economy_bowler_7"></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td data-unique-id="128" id="new_inning__bowler_8"></td>
+                            <td id="new_inning_overs_bowler_8"></td>
+                            <td id="new_inning_runs_bowler_8"></td>
+                            <td id="new_inning_wickets_bowler_8"></td>
+                            <td id="new_inning_economy_bowler_8"></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td data-unique-id="129" id="new_inning__bowler_9"></td>
+                            <td id="new_inning_overs_bowler_9"></td>
+                            <td id="new_inning_runs_bowler_9"></td>
+                            <td id="new_inning_wickets_bowler_9"></td>
+                            <td id="new_inning_economy_bowler_9"></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td data-unique-id="130" id="new_inning__bowler_10"></td>
+                            <td id="new_inning_overs_bowler_10"></td>
+                            <td id="new_inning_runs_bowler_10"></td>
+                            <td id="new_inning_wickets_bowler_10"></td>
+                            <td id="new_inning_economy_bowler_10"></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td data-unique-id="131" id="new_inning__bowler_11"></td>
+                            <td id="new_inning_overs_bowler_11"></td>
+                            <td id="new_inning_runs_bowler_11"></td>
+                            <td id="new_inning_wickets_bowler_11"></td>
+                            <td id="new_inning_economy_bowler_11"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="buttons_div_2">
+
+            <button class="action_button" id="this_over">Show Balls</button>
+            <button class="action_button" id="change_strike_button" onclick="change_strike(1)" hidden>Change
+                Strike</button>
+            <button class="action_button" id="end_of_an_inning" ondblclick="end_inning()" hidden>End
+                Inning</button>
+            <button class="action_button" hidden id="start_new_inning" ondblclick="new_innning()">New
+                Inning</button>
+                <br>
+            <button class="action_button" hidden id="dot_ball"
+                onclick="play_ball('0');match_diary('0',false,false);total_batsman_score()">0</button>
+            <button class="action_button" hidden id="run_1"
+                onclick="play_ball('1');match_diary('1',false,false);total_batsman_score()">1</button>
+            <button class="action_button" hidden id="run_2"
+                onclick="play_ball('2');match_diary('2',false,false);total_batsman_score()">2</button>
+            <button class="action_button" hidden id="run_3"
+                onclick="play_ball('3');match_diary('3',false,false);total_batsman_score()">3</button>
+            <button class="action_button" hidden id="run_4"
+                onclick="play_ball('4');match_diary('4',false,false);total_batsman_score()">4</button>
+            <button class="action_button" hidden id="run_5"
+                onclick="play_ball('5');match_diary('5',false,false);total_batsman_score()">5</button>
+            <button class="action_button" hidden id="run_6"
+                onclick="play_ball('6');match_diary('6',false,false);total_batsman_score()">6</button>
+            <button class="action_button" hidden id="wicket"
+                onclick="play_ball('W');match_wicket();total_batsman_score()">W</button>
+            <button class="action_button" hidden id="no_ball"
+                onclick="play_ball('Nb');match_diary('0',true,false)">Nb</button>
+            <button class="action_button" hidden id="no_ball_1" onclick="play_ball('Nb1');match_diary('1',true,false)">
+                nb+1</button>
+            <button class="action_button" hidden id="no_ball_2"
+                onclick="play_ball('Nb2');match_diary('2',true,false,)">nb+2</button>
+            <button class="action_button" hidden id="no_ball_3"
+                onclick="play_ball('Nb3');match_diary('3',true,false)">nb+3</button>
+            <button class="action_button" hidden id="no_ball_4"
+                onclick="play_ball('Nb4');match_diary('4',true,false)">nb+4</button>
+            <button class="action_button" hidden id="no_ball_5"
+                onclick="play_ball('Nb5');match_diary('5',true,false)">nb+5</button>
+            <button class="action_button" hidden id="no_ball_6"
+                onclick="play_ball('Nb6');match_diary('6',true,false)">nb+6</button>
+            <button class="action_button" hidden id="wide_ball" onclick="play_ball('Wd');match_wide(1)">Wd</button>
+            <button class="action_button" hidden id="wide_ball_1"
+                onclick="play_ball('Wd+1');match_wide(2)">Wd+1</button>
+            <button class="action_button" hidden id="wide_ball_2"
+                onclick="play_ball('Wd+2');match_wide(3)">Wd+2</button>
+            <button class="action_button" hidden id="wide_ball_3"
+                onclick="play_ball('Wd+3');match_wide(4)">Wd+3</button>
+            <button class="action_button" hidden id="wide_ball_4"
+                onclick="play_ball('Wd+4');match_wide(5)">Wd+4</button>
+            <button class="action_button" hidden id="wide_ball_5"
+                onclick="play_ball('Wd+5');match_wide(6)">Wd+5</button>
+            <button class="action_button" hidden id="wide_ball_6"
+                onclick="play_ball('Wd+6');match_wide(7)">Wd+6</button>
+            <button class="action_button" hidden id="others">Extra</button>
+            <button class="action_button" hidden id="leg_bye_1"
+                onclick="play_ball('lb1');match_diary('1',false,true)">lb1</button>
+            <button class="action_button" hidden id="leg_bye_2"
+                onclick="play_ball('lb2');match_diary('2',false,true)">lb2</button>
+            <button class="action_button" hidden id="leg_bye_3"
+                onclick="play_ball('lb3');match_diary('3',false,true)">lb3</button>
+            <button class="action_button" hidden id="leg_bye_4"
+                onclick="play_ball('lb4');match_diary('4',false,true)">lb4</button>
+            <button class="action_button" hidden id="leg_bye_5"
+                onclick="play_ball('lb5');match_diary('5',false,true)">lb5</button>
+              <br>  <h1 id="match_end_label" hidden></h1>
+              <button class="action_button"  id="view_summary" ondblclick="view_summary()" >Summary</button>
+        </div>
+        <label for="" id="this_over_label" hidden>First Innning<br></label>
+    </div>
+    <script src="04_00_Elements_Visibility_Both_Innings.js"></script>
+    <script src="04_00_Statistics_Both_Innings.js"></script>
+    <script src="04_01_First_Inninng_Data.js"></script>
+    <script src="04_01_Gameplay.js"></script>
+    <script src="04_02_Second_Inning_Data.js"></script>
+    <script src="04_02_Second_Inning_Gameplay.js"></script>
+
+
+
+
+
+
+
+
+    <marquee behavior="scroll" scrolldelay="2" scrollamount="10" direction="" id="warning_marquee">Welcome To one of
+        most exciting game of the season ! Get ready for intense actions, thrilling moments and unforgettable plays.
+        Sit back , relax, and enjoy the game, Select Two Batsman and a bowler by Double clicking on it.. </marquee>
+</body>
+
+</html>

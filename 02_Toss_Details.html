@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Teams</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js">
+
+
+    </script>
+    <style>
+        body {
+            font-family: fantasy;
+            background-color: #182628;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .text_batting {
+            display: none;
+        }
+
+        #parent {
+            position: relative;
+            /* Set the parent to relative positioning */
+            width: 70vw;
+            height: 70vh;
+            align-items: center;
+            background-color: #748d92;
+            text-align: center;
+            border: 1px solid white;
+            padding: 20px;
+            /* Add padding to create space for the button */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+        }
+
+        #toss_won_data {
+            background-color: #182628;
+            color: aliceblue;
+        }
+
+        #team_1_won_toss,
+        #team_2_won_toss {
+            width: 200px;
+            height: 35px;
+            font-size: larger;
+            background-color: #bdd7db;
+            font-family: fantasy;
+            font-weight: bolder;
+            padding-top: 3px;
+        }
+
+        #choose_task {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #choose_task div {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        #choose_task label {
+            color: white;
+            margin-left: 5px;
+        }
+
+        #lets_go {
+            width: 200px;
+            height: 30px;
+            font-size: large;
+            background-color: #bdd7db;
+        }
+
+        #view_teams {
+            position: absolute;
+            /* Position the button absolutely */
+            bottom: 10px;
+            /* Adjust bottom spacing */
+            right: 10px;
+            /* Adjust right spacing */
+        }
+
+        #view_teams button {
+            /* Additional styles for the button */
+            background-color: #bdd7db;
+        }
+        .label_input{
+            font-family: fantasy;
+            font-size: larger;
+            font-weight: bold;
+        }
+        #total_overs,#max_overs_by_bowler{
+            width: 200px;
+            height: 25px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+            font-size: large;
+            font-family: fantasy;
+        }
+    </style>
+</head>
+
+<body onload="loadingData()">
+    <div id="parent">
+        <div>
+            <h2 id="head">Ladies and gentlemen, the moment we've all been waiting for has arrived! Amidst the electric
+                atmosphere, we have the captains of both teams at the center of the field. </h2>
+            <h2 id="toss_won_data">And the toss is won By</h2>
+        </div>
+        <!-- COLOR THE BUTTONS ON TOSS WON -->
+        <div>
+            <button id="team_1_won_toss" onclick="team_1_won_toss('team1')"></button>
+            <button id="team_2_won_toss" onclick="team_1_won_toss('team2')"></button>
+        </div>
+        <div id="choose_task">
+            <p id="toss_won_update"></p>
+            <div>
+                <input type="radio" name="toss" id="choose_batting" value="batting" hidden>
+                <label class="text_batting" for="choose_batting">Batting</label>
+            </div>
+            <div>
+                <input type="radio" name="toss" id="choose_bowling" value="bowling" hidden>
+                <label class="text_batting" for="choose_bowling">Bowling</label>
+            </div>
+        </div>
+        <div>
+            <label for="" class="label_input">In Match Overs Each Innings</label>
+            <input type="number" name="" id="total_overs">
+        </div>
+        <div>
+            <label for="" class="label_input">The Maximum Overs a Bowler can bowl</label>
+            <input type="number" name="" id="max_overs_by_bowler">
+        </div>
+        <div>
+            <button onclick="setData()" id="lets_go">Start Match</button>
+        </div>
+        <div id="view_teams">
+            <button onclick="view_teams()">View Teams</button>
+        </div>
+    </div>
+
+    <script>
+        let toss_won;
+        let toss_loss;
+        var i = 0;
+        var urlParams = new URLSearchParams(window.location.search);
+        var receivedData = urlParams.get('team');
+
+        console.log(typeof (receivedData))
+        console.log('Received data:', receivedData);
+        if (receivedData) {
+            var array_of_received_data = receivedData.split("|")
+        }
+        console.log(typeof (array_of_received_data))
+
+        function loadingData() {
+            document.getElementById("team_1_won_toss").innerText = array_of_received_data[0];
+            document.getElementById("team_2_won_toss").innerText = array_of_received_data[12];
+        }
+
+        function team_1_won_toss(team_won_toss) {
+
+            document.getElementById("choose_batting").hidden = false
+            document.getElementById("choose_bowling").hidden = false
+            if (team_won_toss == "team1") {
+                document.getElementById('team_1_won_toss').style.background = "#768d74"
+                document.getElementById('team_2_won_toss').style.background = "#927874"
+                document.getElementById('toss_won_update').innerHTML = "Here is the Update and the toss is won by " + array_of_received_data[0];
+                toss_won = array_of_received_data[0];
+                toss_loss = array_of_received_data[12];
+            }
+            else if (team_won_toss == "team2") {
+                document.getElementById('team_1_won_toss').style.background = "#927874"
+                document.getElementById('team_2_won_toss').style.background = "#768d74"
+                document.getElementById('toss_won_update').innerHTML = "Here is the Update and the toss is won by " + array_of_received_data[12];
+                toss_won = array_of_received_data[12];
+                toss_loss = array_of_received_data[0];
+            }
+            // document.getElementsByClassName("text_batting").style.display = "block"
+            var elements = document.getElementsByClassName("text_batting");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "block";
+            }
+
+        }
+
+        function setData() {
+            if (document.getElementById("total_overs").value != "" && document.getElementById("max_overs_by_bowler").value != "") {
+
+
+                if (toss_won) {
+                    // confirm("So The Toss is won by " + toss_won)
+                    if (document.getElementById("choose_batting").checked) {
+                        confirm("So The Toss is won by " + toss_won + " will bat first")
+                        if (confirm("Shall we Begin the match")) {
+                            document.getElementById('team_1_won_toss').disabled = true
+                            document.getElementById('team_2_won_toss').disabled = true
+                            document.getElementById('choose_batting').disabled = true
+                            document.getElementById('choose_bowling').disabled = true
+                            document.getElementById('lets_go').disabled = true
+                            confirm(document.getElementById("total_overs").value + " Is the total number of overs")
+                            window.location.href = "04_Match.html?team=" + receivedData + "|" + toss_won + "|" + "bat" + "|" + "bowl" + "|" + toss_loss + "|"+document.getElementById("total_overs").value+"|"+document.getElementById("max_overs_by_bowler").value
+
+
+                        }
+                        else {
+                            alert("address the issues and work on it")
+                        }
+                    }
+                    else if (document.getElementById("choose_bowling").checked) {
+                        confirm("So The Toss is won by " + toss_won + " will bowl first")
+                        if (confirm("Shall we Begin the match")) {
+                            window.location.href = "04_Match.html?team=" + receivedData + "|" + toss_won + "|" + "bowl" + "|" + "bat" + "|" + toss_loss+ "|"+document.getElementById("total_overs").value +"|"+document.getElementById("max_overs_by_bowler").value
+                            document.getElementById('team_1_won_toss').disabled = true
+                            document.getElementById('team_2_won_toss').disabled = true
+                            document.getElementById('choose_batting').disabled = true
+                            document.getElementById('choose_bowling').disabled = true
+                            document.getElementById('lets_go').disabled = true
+                        }
+                        else {
+                            alert("address the issues and work on it")
+                        }
+                    } else {
+                        alert("Select what Team " + toss_won + "will do")
+                    }
+                }
+            }
+        }
+
+        function view_teams() {
+            window.open("03_View_Squad_Both_Teams.html?team=" + receivedData, "Teams:", "width=600px,height=400px,top=100px,left=350px")
+        }
+        // Cookies.set("teams",receivedData+";",{expires: 20});
+
+
+    </script>
+</body>
+
+</html>

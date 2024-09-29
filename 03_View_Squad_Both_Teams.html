@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teams</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js">
+  </script>
+  <style>
+    body {
+      font-family: cursive;
+      font-size: larger;
+      background-color: #182628;
+
+    }
+
+    table {
+      background-color: #18262838;
+      width: 570px;
+      height: 500px;
+      /* border: solid 2px black; */
+    }
+
+    th {
+      background-color: #748d923a;
+      color: rgba(245, 245, 245, 0.749);
+    }
+
+  td{
+    color: rgba(245, 245, 245, 0.749);
+  }
+  @media (min-width: 601px) {
+            div {
+                margin-top: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+          }
+
+  </style>
+</head>
+
+<body onload="return setPlayerName()">
+  <script>
+    // let receivedTeams = document.cookie
+    // console.log(receivedTeams);
+    var urlParams = new URLSearchParams(window.location.search);
+    var receivedData = urlParams.get('team');
+
+    console.log(typeof (receivedData))
+    console.log('Received data:', receivedData)
+    if (receivedData) {
+      var array_of_received_data = receivedData.split("|")
+    }
+    function setPlayerName() {
+      document.getElementById("team_name_1").innerHTML = array_of_received_data[0];
+      document.getElementById("team_1_1").innerHTML = array_of_received_data[1];
+      document.getElementById("team_1_2").innerHTML = array_of_received_data[2];
+      document.getElementById("team_1_3").innerHTML = array_of_received_data[3];
+      document.getElementById("team_1_4").innerHTML = array_of_received_data[4];
+      document.getElementById("team_1_5").innerHTML = array_of_received_data[5];
+      document.getElementById("team_1_6").innerHTML = array_of_received_data[6];
+      document.getElementById("team_1_7").innerHTML = array_of_received_data[7];
+      document.getElementById("team_1_8").innerHTML = array_of_received_data[8];
+      document.getElementById("team_1_9").innerHTML = array_of_received_data[9];
+      document.getElementById("team_1_10").innerHTML = array_of_received_data[10];
+      document.getElementById("team_1_11").innerHTML = array_of_received_data[11];
+
+
+      document.getElementById("team_name_2").innerHTML = array_of_received_data[12];
+      document.getElementById("team_2_1").innerHTML = array_of_received_data[13];
+      document.getElementById("team_2_2").innerHTML = array_of_received_data[14];
+      document.getElementById("team_2_3").innerHTML = array_of_received_data[15];
+      document.getElementById("team_2_4").innerHTML = array_of_received_data[16];
+      document.getElementById("team_2_5").innerHTML = array_of_received_data[17];
+      document.getElementById("team_2_6").innerHTML = array_of_received_data[18];
+      document.getElementById("team_2_7").innerHTML = array_of_received_data[19];
+      document.getElementById("team_2_8").innerHTML = array_of_received_data[20];
+      document.getElementById("team_2_9").innerHTML = array_of_received_data[21];
+      document.getElementById("team_2_10").innerHTML = array_of_received_data[22];
+      document.getElementById("team_2_11").innerHTML = array_of_received_data[23];
+
+
+      return false
+    }
+  </script>
+  <div>
+    <table border="1px">
+      <tr>
+        <th id="team_name_1"></th>
+        <th id="team_name_2"></th>
+      </tr>
+      <tr>
+        <td id="team_1_1"></td>
+        <td id="team_2_1"></td>
+      </tr>
+      <tr>
+        <td id="team_1_2"></td>
+        <td id="team_2_2"></td>
+      </tr>
+      <tr>
+        <td id="team_1_3"></td>
+        <td id="team_2_3"></td>
+      </tr>
+      <tr>
+        <td id="team_1_4"></td>
+        <td id="team_2_4"></td>
+      </tr>
+      <tr>
+        <td id="team_1_5"></td>
+        <td id="team_2_5"></td>
+      </tr>
+      <tr>
+        <td id="team_1_6"></td>
+        <td id="team_2_6"></td>
+      </tr>
+      <tr>
+        <td id="team_1_7"></td>
+        <td id="team_2_7"></td>
+      </tr>
+      <tr>
+        <td id="team_1_8"></td>
+        <td id="team_2_8"></td>
+      </tr>
+      <tr>
+        <td id="team_1_9"></td>
+        <td id="team_2_9"></td>
+      </tr>
+      <tr>
+        <td id="team_1_10"></td>
+        <td id="team_2_10"></td>
+      </tr>
+      <tr>
+        <td id="team_1_11"></td>
+        <td id="team_2_11"></td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
